@@ -1,8 +1,8 @@
 import type { Config } from './types';
 
-export const defaultApiHost = 'https://api.segment.io/v1/b';
+export const defaultApiHost = 'https://cdp.customer.io/v1/b';
 
-export const settingsCDN = 'https://cdn-settings.segment.com/v1/projects';
+export const settingsCDN = 'https://cdp.customer.io/v1/projects';
 
 export const defaultConfig: Config = {
   writeKey: '',
