@@ -1,5 +1,6 @@
 {
 "name": "@customerio/analytics-react-native",
+"main": "packages/core/src/index",
 "version": "0.0.1",
   "private": true,
   "workspaces": [
