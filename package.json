@@ -1,5 +1,5 @@
 {
-"name": "customerio/analytics-react-native",
+"name": "@customerio/analytics-react-native",
 "version": "0.0.1",
   "private": true,
   "workspaces": [
