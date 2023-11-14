@@ -1,7 +1,4 @@
 {
-"name": "@customerio/analytics-react-native",
-"main": "packages/core/src/index",
-"version": "0.0.1",
   "private": true,
   "workspaces": [
     "packages/sovran",
@@ -10,7 +7,7 @@
   ],
   "scripts": {
     "bootstrap": "yarn install && yarn example install && yarn example pods && husky install",
-    "core": "yarn workspace @customerio/analytics-react-native",
+    "core": "yarn workspace @segment/analytics-react-native",
     "sovran": "yarn workspace @segment/sovran-react-native",
     "example": "yarn --cwd example",
     "build": "yarn workspaces run build",
