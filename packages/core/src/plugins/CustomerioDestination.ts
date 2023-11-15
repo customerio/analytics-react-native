@@ -17,11 +17,11 @@ import { defaultConfig } from '../constants';
 
 const MAX_EVENTS_PER_BATCH = 100;
 const MAX_PAYLOAD_SIZE_IN_KB = 500;
-export const SEGMENT_DESTINATION_KEY = 'Customer.io Data Pipelines';
+export const CUSTOMERIO_DESTINATION_KEY = 'Customer.io Data Pipelines';
 
 export class CustomerioDestination extends DestinationPlugin {
   type = PluginType.destination;
-  key = SEGMENT_DESTINATION_KEY;
+  key = CUSTOMERIO_DESTINATION_KEY;
   private apiHost?: string;
   private isReady = false;
 
@@ -90,7 +90,7 @@ export class CustomerioDestination extends DestinationPlugin {
     super.configure(analytics);
 
     // Enrich events with the Destination metadata
-    this.add(new DestinationMetadataEnrichment(SEGMENT_DESTINATION_KEY));
+    this.add(new DestinationMetadataEnrichment(CUSTOMERIO_DESTINATION_KEY));
     this.add(this.queuePlugin);
   }
 
