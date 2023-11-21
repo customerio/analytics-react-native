@@ -538,17 +538,24 @@ export class SegmentClient {
     await this.process(event);
     this.logger.info('TRACK event saved', event);
   }
-async setDeviceAttributes(data: JsonMap) {
-  const context = this.store.context.get()
-  const updatedContext = Object.assign({}, context?.device, data)
-  this.store.context.set({ device: updatedContext })
-  console.log(updatedContext)
-  const event = createTrackEvent({
-    event: 'Device Created or Updated',
-  });
-  void this.process(event);
-  this.logger.info('DEVICE ATTRIBUTES UPDATED', event);
-}
+  async registerDevice(attributes: JsonMap) {
+    const context = this.store.context.get()
+    const updatedContext = Object.assign({}, context?.device, attributes)
+    this.store.context.set({ device: updatedContext })
+    const event = createTrackEvent({
+      event: 'Device Created or Updated',
+    });
+    void this.process(event);
+    this.logger.info('DEVICE REGISTERED / DEVICE ATTRIBUTES UPDATED', event);
+  }
+  
+  async deleteDevice() {
+    const event = createTrackEvent({
+      event: 'Device Deleted',
+    });
+    void this.process(event);
+    this.logger.info('DEVICE DELETED', event);
+  }
 
   async identify(userId?: string, userTraits?: UserTraits) {
     const event = createIdentifyEvent({
