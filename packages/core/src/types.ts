@@ -142,7 +142,7 @@ export type Config = {
   maxBatchSize?: number;
   trackDeepLinks?: boolean;
   defaultSettings?: SegmentAPISettings;
-  autoAddSegmentDestination: boolean;
+  autoAddSegmentDestination?: boolean;
   autoAddCustomerIODestination?: boolean;
   collectDeviceId?: boolean;
   storePersistor?: Persistor;
