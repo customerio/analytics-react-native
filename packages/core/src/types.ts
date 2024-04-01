@@ -143,6 +143,7 @@ export type Config = {
   trackDeepLinks?: boolean;
   defaultSettings?: SegmentAPISettings;
   autoAddSegmentDestination?: boolean;
+  autoAddCustomerIODestination?: boolean;
   collectDeviceId?: boolean;
   storePersistor?: Persistor;
   storePersistorSaveDelay?: number;

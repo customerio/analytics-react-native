@@ -26,7 +26,7 @@ import {
 } from './flushPolicies';
 import { FlushPolicyExecuter } from './flushPolicies/flush-policy-executer';
 import type { DestinationPlugin, PlatformPlugin, Plugin } from './plugin';
-import { SegmentDestination } from './plugins/SegmentDestination';
+import { CustomerioDestination } from './plugins/CustomerioDestination';
 import {
   createGetter,
   DeepLinkData,
@@ -225,9 +225,9 @@ export class SegmentClient {
 
     // add segment destination plugin unless
     // asked not to via configuration.
-    if (this.config.autoAddSegmentDestination === true) {
-      const segmentDestination = new SegmentDestination();
-      this.add({ plugin: segmentDestination });
+    if (this.config.autoAddCustomerIODestination === true) {
+      const customerioDestination = new CustomerioDestination();
+      this.add({ plugin: customerioDestination });
     }
 
     // Setup platform specific plugins
@@ -550,6 +550,24 @@ export class SegmentClient {
 
     await this.process(event);
     this.logger.info('TRACK event saved', event);
+  }
+  async registerDevice(attributes: JsonMap) {
+    const context = this.store.context.get()
+    const updatedContext = Object.assign({}, context?.device, attributes)
+    this.store.context.set({ device: updatedContext })
+    const event = createTrackEvent({
+      event: 'Device Created or Updated',
+    });
+    void this.process(event);
+    this.logger.info('DEVICE REGISTERED / DEVICE ATTRIBUTES UPDATED', event);
+  }
+  
+  async deleteDevice() {
+    const event = createTrackEvent({
+      event: 'Device Deleted',
+    });
+    void this.process(event);
+    this.logger.info('DEVICE DELETED', event);
   }
 
   async identify(userId?: string, userTraits?: UserTraits) {
